@@ -43,11 +43,6 @@ public class UserValidate {
 
         if (Objects.isNull(request.getPhoneNumber())) {
             errorDetails.add(new ErrorDetail("phoneNumber", "Parameter not found"));
-
-        }else {
-            if (!ValidateUtils.prefixNumber(request.getPhoneNumber())) {
-                throw new ValidateException("Invalid mobile format");
-            }
         }
 
         if (Objects.isNull(request.getRole())) {
@@ -82,8 +77,12 @@ public class UserValidate {
             throw new ValidateException("can not create user : account duplicate");
         }
 
+        if (!ValidateUtils.prefixNumber(request.getPhoneNumber())) {
+            throw new ValidateException("Invalid mobile format");
+        }
+
         if (request.getIdCardNo().length() != 13) {
-            throw new ValidateException("length of id card no :" + ""  + request.getIdCardNo() + " " + "digits");
+            throw new ValidateException("length of id card no invalid");
         }
 
     }

@@ -73,12 +73,12 @@ public class MovieValidate {
         if (byAccntNo.isPresent()) {
             User user = byAccntNo.get();
 
-            if (!Arrays.asList(new String[]{"Manager", "Leader", "Staff"}).contains(user.getRole())) {
+            if (!Arrays.asList(new String[]{"manager", "leader", "floorStaff"}).contains(user.getRole())) {
                 throw new ValidateException("can not create movie : " + user.getRole() + "not supported");
             }
 
         }else {
-            throw new ValidateException("can not create movie : user not found ");
+            throw new ValidateException("can not create movie : user not found");
         }
 
     }
@@ -108,7 +108,7 @@ public class MovieValidate {
         if (byAccntNo.isPresent()) {
             User user = byAccntNo.get();
 
-            if (!Arrays.asList(new String[]{"Manager", "Leader", "Staff"}).contains(user.getRole())) {
+            if (!Arrays.asList(new String[]{"manager", "leader", "floorStaff"}).contains(user.getRole())) {
                 throw new ValidateException("can not update movie : " + user.getRole() + "not supported");
             }
 
@@ -142,7 +142,7 @@ public class MovieValidate {
 
         }else {
             User user = byAccntNo.get();
-            if (!user.getRole().equals("Manager")) {
+            if (!user.getRole().equals("manager")) {
                 throw new ValidateException("role : " + user.getRole() + "not supported");
             }
         }
